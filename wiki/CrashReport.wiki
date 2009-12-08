@@ -1,4 +1,4 @@
-#summary A splash page for external bug filing
+#summary We're sorry you're having trouble.
 
 = :-( =
 
