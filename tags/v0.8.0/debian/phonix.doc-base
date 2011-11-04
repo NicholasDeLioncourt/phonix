@@ -1,0 +1,12 @@
+Document: phonix
+Title: Debian phonix Manual
+Author: Jesse Bangs
+Abstract: Manual for the Phonix phonological modeling language and the command-line interpreter
+Section: Science/Social
+
+Format: HTML
+Index: /usr/share/doc/phonix/PhonixManual.html
+Files: /usr/share/doc/phonix/PhonixManual.html
+
+Format: PDF
+Files: /usr/share/doc/phonix/PhonixManual.pdf.gz
