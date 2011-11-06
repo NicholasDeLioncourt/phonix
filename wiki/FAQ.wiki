@@ -32,15 +32,48 @@ All of these have different levels of sophistication and slightly different feat
 
 === How do I match any segment? ===
 
-Use `[]`. (There's nothing special about this: it's just a feature matrix with no feature values in it.)
+Use `[]`. For example, the following rule will make everything into a schwa:
+
+{{{
+import std.features
+import std.symbols
+
+rule everything-is-schwa
+    [] => @
+}}}
 
 === How do I match "one or more segments"? ===
 
-This isn't yet supported. Try the rule parameter `filter` instead. (See the manual for full explanation.)
+Phonix has three regexp-like operators which can accomplish this. These operators can only be used in the rule context (the part that comes after the `/`).
+
+* To match _zero or one_ segments you enclose the optional segment in parentheses, like this: `(r)`.
+* To match _one or more_ segments, you enclose the segment in parentheses and add a `+` afterwards: `(r)+`
+* To match _zero or more_ segments you enclose the segment in parentheses and add a `*` afterwards: `(r)*`
+
+For example:
+
+{{{
+import std.features
+import std.symbols
+
+# This turns pa => ba and pra => bra
+rule zero-or-one
+    p => b / _ (r) a
+
+# This turns pra => bra, prra => brra, etc., but leaves pa unchanged
+rule one-or-more
+    p => b / _ (r)+ a
+
+# This turns pa => ba, pra => bra, prra => brra, etc.
+rule zero-or-more
+    p => b / _ (r)* a
+}}}
+
+See the Phonix manual for a fuller explanation.
 
 === How do I indicate that a rule should apply when a condition is _not_ met? ===
 
-Use the "excluded context". This is indicated by a double-slash `//`. (See the manual for full explanation.)
+Use the "excluded context". This is indicated by a double-slash `//`. See the Phonix manual for a full explanation.
 
 === Why isn't my rule working like I think it should? ===
 
